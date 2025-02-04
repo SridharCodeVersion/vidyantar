@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIDYANTAR</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            text-align: center;
+            color: #333;
+            transition: 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #222;
+            color: white;
+        }
+
+        header {
+            background: #4a90e2;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #topBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        #topBar h1, #topBar h2 {
+            margin: 0;
+        }
+
+        #topBar h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #topBar h2 {
+            font-size: 18px;
+            font-weight: normal;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        button {
+            background: #008CBA;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #005f73;
+        }
+
+        #tileBar {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .tile {
+            width: 22%;
+            min-width: 80px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e3f2fd;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .tile:hover {
+            transform: scale(1.1);
+            background: #009688;
+            color: white;
+        }
+
+        #descriptionBar, #notificationBar, #countdownBar, #dateBar {
+            background: #ffffff;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #descriptionBar p, #notificationBar h2, #countdownBar h2, #dateBar h2 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        a {
+            color: #0e0e0c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ffcc00;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background: #333;
+            color: #ffcc00;
+        }
+
+        td {
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        td:hover {
+            background: #ffcc00;
+            color: black;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: white;
+            color: black;
+            padding: 12px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            .tile {
+                width: 45%;
+                font-size: 12px;
+                height: 40px;
+            }
+
+            header, #topBar, #tileBar, #descriptionBar, #notificationBar, #countdownBar, #dateBar {
+                padding: 8px;
+                margin: 4px;
+            }
+
+            button {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+
+            #topBar h2 {
+                font-size: 14px;
+            }
+
+            #calendar th, #calendar td {
+                font-size: 8px;
+                padding: 3px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tile {
+                width: 90%;
+                font-size: 12px;
+                height: 40px;
+            }
+
+            header, #topBar, #tileBar, #descriptionBar, #notificationBar, #countdownBar, #dateBar {
+                padding: 5px;
+                margin: 2px;
+            }
+
+            button {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            footer {
+                font-size: 10px;
+            }
+        }
+
+#themeBtn, #backBtn {
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Button styles */
+#themeBtn:hover, #backBtn:hover {
+    color: #ccc;
+}
+
+h2 {
+    font-size: 18px; /* Reduced size */
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for a stylish effect */
+    animation: zoomIn 1s ease-in-out; /* Zoom-in animation */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Zoom-in effect */
+@keyframes zoomIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Hover effect for interactive zoom */
+h2:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    color: #ff8c00; /* Change color on hover */
+}
+#descriptionBar {
+    background: linear-gradient(135deg, #db95cf, #dda93a); /* Gradient for vibrant modern look */
+    padding: 12px 20px; /* Balanced padding */
+    border-radius: 15px; /* Soft rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    max-width: 90%;
+    margin: 10px auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Clean font */
+    height: 55px; /* Slightly adjusted height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflow */
+}
+
+#descriptionBar p {
+    font-size: 12px; /* Reduced font size to fit the text */
+    color: white;
+    line-height: 1.3;
+    font-weight: 400; /* Regular weight for cleaner look */
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Soft text shadow for readability */
+    word-wrap: break-word; /* Ensure text wraps properly */
+    letter-spacing: 0.5px; /* Slight letter spacing */
+    white-space: normal; /* Allow text to wrap */
+    text-transform: capitalize; /* Capitalize key words */
+}
+
+/* Hover effect */
+#descriptionBar:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    background: linear-gradient(135deg, #194e57, #dbe1dd85); /* Reverse gradient */
+}
+#notificationBar, #countdownBar {
+    background: #31d4c150; /* Clean blue background */
+    padding: 10px 20px; /* Balanced padding */
+    border-radius: 12px; /* Rounded corners for soft edges */
+    margin: 10px auto;
+    text-align: center;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#notificationBar h2, #countdownBar h2 {
+    font-size: 14px; /* Reduced font size */
+    color: rgb(8, 7, 7);
+    font-weight: 500; /* Semi-bold text */
+    margin: 0;
+    letter-spacing: 0.5px; /* Slight spacing for clean text */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+#notificationBar a, #countdownBar #countdown {
+    font-size: 12px; /* Further reduced font size for a cleaner look */
+    color: #ec8224; /* Light color for contrast */
+    font-weight: 400; /* Regular weight for softer appearance */
+    margin-top: 5px;
+    text-decoration: none; /* Remove underline for a clean look */
+    transition: color 0.3s ease;
+}
+
+#notificationBar a:hover, #countdownBar #countdown:hover {
+    color: #ffcc00; /* Change text color on hover for interactivity */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+#notificationBar:hover, #countdownBar:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+    
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topBar">
+            <button id="themeBtn">🌙</button>
+            <h2> ELECTROSTATICS </h2>
+            <button id="backBtn">←</button>
+        </div>
+        
+    </header>
+
+    <section id="descriptionBar">
+        <p>ELECTROSTATICS JEE MAINS</p>
+    </section>
+    <section id="notificationBar">
+        <h2>GET STARTED, CHOOSE YOUR RESOURCES</h2>
+    </section>
+
+    <section id="tileBar" style="display: flex; justify-content: center; align-items: center; gap: 16px; padding: 10px;">
+        <a href="ve.html">
+            <div class="tile" id="videoLectures" style="width: 150px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 1.2rem; text-align: center;">VIDEO LECTURES</div>
+        </a>
+        <a href="oe.html">
+            <div class="tile" id="oneShots" style="width: 150px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 1.2rem; text-align: center;">ONE SHOTS</div>
+        </a>
+        <a href="se.html">
+            <div class="tile" id="shortNotes" style="width: 150px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 1.2rem; text-align: center;">SHORT NOTES</div>
+        </a>
+        <a href="pe.html">
+            <div class="tile" id="pyqs" style="width: 150px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 1.2rem; text-align: center;">PYQS</div>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Vidyantar - All Rights Reserved</p>
+    </footer>
+
+    <script>
+      
+        // Theme Toggle
+        const themeBtn = document.getElementById("themeBtn");
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            themeBtn.innerText = isDark ? "☀️" : "🌙";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        }
+
+        themeBtn.addEventListener("click", toggleTheme);
+
+        // Load Theme Preference
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeBtn.innerText = "☀️";
+        }
+
+        // Back Button Functionality
+        document.getElementById("backBtn").addEventListener("click", function() {
+            window.history.back();
+        });
+
+    </script>
+</body>
+</html>

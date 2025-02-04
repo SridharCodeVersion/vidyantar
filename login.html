@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg'); /* Background image URL */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.7); /* Transparent background */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #0385e1;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 1em;
+      color: #e9eff3;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .input-box {
+      background-color: rgba(255, 255, 255, 0.7); /* Translucent white with reduced opacity */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .link {
+      margin-top: 20px;
+      font-size: 1em;
+    }
+
+    .link a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .link {
+  margin-top: 20px;
+  font-size: 1em;
+  color: white; /* Makes the text white */
+}
+
+.link a {
+  text-decoration: none;
+  color: white; /* Makes the link text white */
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>VIDYANTAR</h2>
+    <p class="description">Your Ultimate Knowledge Nexus for JEE Prep.</p>
+    <div class="input-box">
+      <div class="input-group">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" required>
+      </div>
+      <div class="input-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required>
+      </div>
+      <button id="loginButton" onclick="login()">Login</button>
+    </div>
+    <div class="link">
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+    <div class="error-message" id="errorMessage" style="display: none;">
+      <p>Register first</p>
+      <button onclick="goBack()">Back</button>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+  const registeredUsername = localStorage.getItem('username');
+  const registeredPassword = localStorage.getItem('password');
+  const lastLoginTime = localStorage.getItem('lastLoginTime');
+  const currentTime = new Date().getTime();
+
+  if (username === registeredUsername && password === registeredPassword) {
+    // If it's been less than 24 hours since the last login
+    if (lastLoginTime && (currentTime - lastLoginTime) < 24 * 60 * 60 * 1000) {
+      alert("You must wait 24 hours before logging in again.");
+    } else {
+      // Save the current login time
+      localStorage.setItem('lastLoginTime', currentTime);
+      window.location.href = 'codebase3.html'; // Redirect to the intended page
+    }
+  } else {
+    document.getElementById('loginButton').style.display = 'none';
+    document.getElementById('errorMessage').style.display = 'block';
+  }
+}
+
+function goBack() {
+  window.location.href = 'login.html';
+}
+  </script>
+
+</body>
+</html>

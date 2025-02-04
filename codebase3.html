@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIDYANTAR</title>
+
+    <!-- Paste your CSS code here inside the <style> tag -->
+    <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+header {
+  background-color: lightblue;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+#topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+#topBar h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#themeBtn {
+  left: 10px;
+  border-radius: 50%;
+  background-color: #008CBA;
+  width: 30px; /* reduced width */
+  height: 30px; /* reduced height */
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px; /* reduced font size */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+#tileBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.tile {
+  background-color: lightgrey;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.tile:hover {
+  transform: scale(1.1);
+}
+
+.tile:active {
+  background-color: black;
+  color:
+   white;
+}
+
+
+
+#descriptionBar {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem; /* Smaller font size for mobile */
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+#descriptionBar p {
+  font-family: 'Georgia', serif;
+  color: #555;
+  text-align: justify;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+#descriptionBar p span {
+  font-weight: bold;
+  font-style: italic;
+  display: inline-block;
+  opacity: 0;
+  transform: scale(1);
+  animation: highlightAnimation 1s forwards;
+  text-shadow: 0 0 10px #007BFF, 0 0 20px #007BFF, 0 0 30px #007BFF;
+}
+
+@keyframes highlightAnimation {
+  0% {
+    opacity: 0;
+    color: #555;
+  }
+  50% {
+    opacity: 0.5;
+    color: #007BFF; /* Glowing blue color */
+  }
+  100% {
+    opacity: 1;
+    color: #007BFF; /* Fully glowing blue */
+    transform: scale(1.1); /* Slight scaling effect for the glow */
+  }
+}
+
+#descriptionBar p span:nth-child(1) {
+  animation-delay: 0s;
+}
+#descriptionBar p span:nth-child(2) {
+  animation-delay: 0.05s;
+}
+#descriptionBar p span:nth-child(3) {
+  animation-delay: 0.1s;
+}
+#descriptionBar p span:nth-child(4) {
+  animation-delay: 0.15s;
+}
+/* Continue for all the spans */
+@media screen and (max-width: 768px) {
+  #descriptionBar {
+    font-size: 0.7rem; /* Even smaller font size for small screens */
+    padding: 12px;
+  }
+
+  #descriptionBar p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #descriptionBar {
+    font-size: 0.6rem; /* Smallest font size for very small screens */
+    padding: 10px;
+  }
+
+  #descriptionBar p {
+    font-size: 0.6rem;
+  }
+}
+
+#imageBar {
+  background-color: #e5a9b2;
+  padding: 15px;
+  text-align: center;
+}
+
+#imageSlider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+#imageSlider img {
+  width: 90%;
+  margin-right: 10px;
+  height: auto;
+  border-radius: 8px;
+}
+
+#aiBar {
+  background-color: rgb(195, 47, 146);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+#feedbackBar {
+  background-color: #a9ad9ad2;
+  padding: 20px;
+  text-align: center;
+}
+
+#creditsBar {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.372);
+  backdrop-filter: blur(10px);
+  max-width: 90%;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 15px;
+}
+
+#creditsBar button {
+  background: rgba(12, 233, 240, 0.2);
+  border: none;
+  color: rgba(0, 0, 0, 0.493);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#creditsBar button:hover {
+  background-color: #FFC107;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  #creditsBar {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  #creditsBar button {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+}
+
+#contactUsBar {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.hidden {
+  display: none;
+}
+
+#detailsPage {
+  padding: 20px;
+}
+
+#examList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#examList li {
+  margin: 5px 0;
+}
+
+body.light {
+  background-color: rgb(169, 188, 180);
+  color: black;
+}
+
+body.dark {
+  background-color: #333;
+  color: white;
+}
+
+body.magenta {
+  background-color: rgb(255, 136, 0);
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  #topBar h2 {
+    font-size: 1rem;
+  }
+
+  #tileBar {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .tile {
+    width: 100px;
+    height: 100px;
+  }
+
+  #imageSlider img {
+    width: 100%;
+    margin-right: 15px;
+  }
+
+  #descriptionBar {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  #topBar h2 {
+    font-size: 0.9rem;
+  }
+
+  #tileBar {
+    flex-direction: column;
+  }
+
+  .tile {
+    width: 80px;
+    height: 80px;
+  }
+
+  #themeBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  #descriptionBar {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+#tileBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.tile {
+  margin: 0 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #964caf;
+  color: rgb(42, 37, 37);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.tile:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 16, 76, 0.427);
+}
+
+@media (max-width: 600px) {
+  #tileBar {
+    flex-direction: column;
+  }
+
+  .tile {
+    margin-bottom: 10px;
+  }
+}
+
+#contactUsBar {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  background: #eee;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.contact-item:hover {
+  background: #007BFF;
+  color: white;
+  transform: scale(1.05);
+}
+
+.contact-item input {
+  accent-color: #007BFF;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+#contactInfo {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #555;
+}
+
+#creditsBar {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #FFC107;
+  transform: scale(1.05);
+}
+
+#footer {
+  background-color: #2f2f2f;
+  padding: 10px 0;
+  color: white;
+  text-align: center;
+}
+
+#footer a {
+  color: #FFC107;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+#footer p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.footer-logo {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.footer-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .tile {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+header h1 {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+#backBtn {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    width: 40px; /* Small size */
+    height: 40px; /* Small size */
+    border-radius: 50%; /* Spherical shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px; /* Arrow size */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#backBtn:hover {
+    transform: scale(1.1); /* Zoom effect */
+}
+
+#backBtn:active {
+    background-color: #005f73; /* Darker color when clicked */
+}
+
+#backIcon {
+    font-size: 18px; /* Arrow icon size */
+}
+#aiBar {
+  background-color: #da58dc;  /* Stylish purple background */
+  padding: 15px 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;  /* Modern and stylish font */
+  font-size: 1rem;  /* Smaller font size for compactness */
+  border-radius: 8px;
+  max-width: 90%;  /* Ensure the width is mobile-friendly */
+  margin: 10px auto;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);  /* Soft shadow for depth */
+  transition: all 0.3s ease-in-out;  /* Smooth transition for effects */
+}
+
+#aiBar:hover {
+  background-color: #b077c0;  /* Lighter purple on hover */
+  transform: scale(1.05);  /* Slightly scale up the bar */
+}
+
+#aiBar h2 {
+  font-size: 1.4rem;  /* Larger heading font size */
+  margin: 0;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Text shadow for extra effect */
+}
+
+#aiBar p {
+  font-size: 0.9rem;  /* Smaller paragraph text */
+  font-family: 'Lora', serif;  /* Elegant serif font for the paragraph */
+  line-height: 1.6;
+  color: #eee;
+  margin-top: 10px;
+  animation: glowText 2s ease-in-out infinite;  /* Glowing effect for the paragraph */
+}
+
+@keyframes glowText {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+  }
+  50% {
+    text-shadow: 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #aiBar {
+    font-size: 0.9rem;  /* Slightly smaller font for better fit on tablets */
+    padding: 10px 15px;
+  }
+
+  #aiBar h2 {
+    font-size: 1.2rem;  /* Smaller heading for mobile */
+  }
+
+  #aiBar p {
+    font-size: 0.85rem;  /* Smaller paragraph text on mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #aiBar {
+    font-size: 0.8rem;  /* Smaller font for very small screens */
+    padding: 8px 12px;
+  }
+
+  #aiBar h2 {
+    font-size: 1rem;  /* Reduce heading size for small screens */
+  }
+
+  #aiBar p {
+    font-size: 0.8rem;  /* Even smaller paragraph font */
+  }
+}
+#feedbackBar {
+  background-color: #592a76;  /* Matching purple background */
+  padding: 15px 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;  /* Matching font family */
+  font-size: 1rem;  /* Similar font size */
+  border-radius: 8px;
+  max-width: 80%;  /* Slightly reduced width for a more compact bar */
+  margin: 10px auto;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);  /* Soft shadow for depth */
+  transition: all 0.3s ease-in-out;  /* Smooth transition for effects */
+}
+
+#feedbackBar h2 {
+  font-size: 1.4rem;  /* Larger heading font size */
+  margin: 0;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Text shadow effect */
+}
+
+#feedbackInput {
+  width: 80%;  /* Reduced width */
+  height: 50px;  /* Reduced height */
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+#submitFeedback {
+  width: 50%;  /* Smaller button width */
+  padding: 8px;
+  font-size: 14px;  /* Smaller font size */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#submitFeedback:hover {
+  background-color: #45a049;
+}
+
+#feedbackMessage {
+  font-size: 14px;
+  text-align: center;
+  color: green;
+}
+
+@media screen and (max-width: 768px) {
+  #feedbackBar {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+
+  #feedbackBar h2 {
+    font-size: 1.2rem;  /* Adjust heading size for mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #feedbackBar {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  #feedbackBar h2 {
+    font-size: 1rem;  /* Reduce heading size for small screens */
+  }
+}
+#aiBar h2:first-of-type {
+    color: black; /* Makes "Learn using AI" black */
+}
+
+    </style>
+</head>
+<body>
+    <div id="frontPage">
+        <!-- Top Bar with Heading and Icons -->
+        <header>
+            <h1>VIDYANTAR</h1>
+            <div id="topBar">
+                <button id="themeBtn">🌙</button>
+                <h2>ALL IN ONE JEE PLATFORM FOR HOLISTIC LEARNING</h2>
+                <button id="backBtn">
+                    <span id="backIcon">⬅️</span>
+                </button>                
+            </div>
+        </header>
+        
+        
+    <!-- Description Bar -->
+         <section id="descriptionBar">
+            <p id="description"> A revolutionary app designed with one goal in mind – to provide free, accessible, and high-quality resources to every aspiring JEE student, regardless of their background. 
+              In a world where access to education is often limited by financial constraints, our app ensures that no dream is left behind. 
+              With comprehensive study materials, practice papers, progress tracking, and motivational support, Vidyantar is more than just a learning tool—it's a movement to level the playing field and open doors for all, regardless of their socio-economic status. Because talent and determination should be the only limits to success.</p>
+        </section>
+
+     <!-- Tile Bar -->
+     <section id="tileBar" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 10px;">
+        <a href="mainscode.html">
+            <div class="tile" id="jeeMains" style="width: 100px; height: 22.5px; background-color: #adf7a8b4; color: black; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 0.9rem; text-align: center;">JEE MAINS</div>
+        </a>
+        <a href="advancedcode.html">
+            <div class="tile" id="jeeAdvanced" style="width: 100px; height: 22.5px; background-color: #7ebfca; color: black; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 0.9rem; text-align: center;">JEE ADVANCED</div>
+        </a>
+        <a href="boards.html">
+            <div class="tile" id="boards" style="width: 100px; height: 22.5px; background-color: #f7d385; color: black; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 0.9rem; text-align: center;">BOARDS</div>
+        </a>
+        <a href="trackprogressmains.html">
+            <div class="tile" id="trackProgress" style="width: 100px; height: 22.5px; background-color: #ffb1b1f9; color: black; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 0.9rem; text-align: center;">TRACK PROGRESS</div>
+        </a>
+        <a href="aboutus.html">
+            <div class="tile" id="aboutUs" style="width: 100px; height: 22.5px; background-color: #f49cde; color: black; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-size: 0.9rem; text-align: center;">ABOUT US</div>
+        </a>
+    </section>    
+
+
+<!-- Image Bar -->
+
+<section id="imageBar" style="padding: 10px 0;">
+    <h2 style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; text-align: center; color: #333; padding: 5px 0;">
+        Exams: We’ve got the arsenal to fuel your success!
+    </h2>
+    <div id="imageSlider" style="display: flex; overflow: hidden; justify-content: center; gap: 8px; padding: 5px;">
+        <img src="https://img.theweek.in/content/dam/week/news/images/2020/jee-main-theweek.jpg" alt="Image 1" style="width: 100%; max-width: 200px; border-radius: 8px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqOMoQP7gyMnbb9nY1AAE6utLI8dnxXjiWi6sKmgljUD46KNM7toNiew1SaQa2rNlvwrM&usqp=CAU" alt="Image 2" style="width: 100%; max-width: 200px; border-radius: 8px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGIrrPkkkBlOFXqw0x6kVgKiAuwHxPuawBfA&s" alt="Image 3" style="width: 100%; max-width: 200px; border-radius: 8px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ0nHKRwSrNepjWeIhaH0kgSuyC3HKWYfc6A&s" alt="Image 4" style="width: 100%; max-width: 200px; border-radius: 8px;">
+        <img src="https://as2.ftcdn.net/jpg/03/54/00/91/1000_F_354009182_Cc6DzlgU402u1bXAGyvXAbmp5EgYAV9D.jpg" alt="Image 5" style="width: 100%; max-width: 200px; border-radius: 8px;">
+    </div>
+    <input type="text" id="userInput" placeholder="Enter your target exams" 
+        style="width: 80%; padding: 8px; font-size: 0.9rem; margin: 5px auto; display: block; border-radius: 5px; border: 1px solid #ddd;">
+    <button id="resetBtn" 
+        style="padding: 8px 16px; font-size: 0.9rem; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; display: block; margin: 5px auto;">
+        Reset
+    </button>
+    <div id="examList" style="text-align: center; margin-top: 15px;"></div>
+</section>
+
+
+        <!-- AI Bar -->
+        <section id="aiBar">
+            <h2>Learn using AI</h2>
+          <h2>Harness the power of artificial intelligence to revolutionize your learning journey</h2>
+            <a href="https://www.embibe.com/signup" target="_blank">
+        <button id="startBtn">Start</button>
+    </a>
+        </section>
+
+        <!-- Feedback Bar -->
+        <section id="feedbackBar">
+          <h2>Your Voice Matters – Share Your Thoughts!</h2>
+            <textarea id="feedbackInput" placeholder="Enter feedback"></textarea>
+            <button id="submitFeedback">Submit</button>
+            <p id="feedbackMessage"></p>
+        </section>
+
+        <!-- Credits Bar -->
+        <section id="creditsBar">
+            <button id="coPoweredBtn">Co-powered By</button>
+            <button id="coPartnersBtn">Co-partners</button>
+            <button id="creditsBtn">Credits</button>
+        </section>
+
+       <!-- Contact Us Bar -->
+<section id="contactUsBar" style="font-size: 0.9rem; padding: 6px 9px;">
+    <h2 style="font-size: 1.1rem; text-align: center;">Contact Us</h2>
+    <div class="contact-list" style="display: flex; flex-direction: column; gap: 6px;">
+        <label class="contact-item" style="font-size: 0.9rem;">
+            Sridhar Iyer
+            <input type="checkbox" id="name1" style="transform: scale(0.9);">
+        </label>
+        <label class="contact-item" style="font-size: 0.9rem;">
+            Akshat Sharma
+            <input type="checkbox" id="name2" style="transform: scale(0.9);">
+        </label>
+        <label class="contact-item" style="font-size: 0.9rem;">
+            Parv Garg
+            <input type="checkbox" id="name3" style="transform: scale(0.9);">
+        </label>
+        <label class="contact-item" style="font-size: 0.9rem;">
+            Shivansh Goel
+            <input type="checkbox" id="name4" style="transform: scale(0.9);">
+        </label>
+    </div>
+    <p id="contactInfo" style="font-size: 0.9rem; text-align: center;"></p>
+</section>
+
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Vidyantar - All Rights Reserved</p>
+    </footer>
+    </div>
+
+    <div id="detailsPage" class="hidden">
+        <header>
+            <h1 id="detailsHeading"></h1>
+            <button id="backBtnDetails">BACK</button>
+        </header>
+        <section id="detailsDescription">
+            <p id="detailsText"></p>
+        </section>
+    </div>
+
+    <!-- Paste your JavaScript code here inside the <script> tag -->
+    <script>
+        // BACK button for front page
+document.getElementById('backBtn').addEventListener('click', function() {
+    window.history.back();
+});
+
+// Theme toggle
+const themeBtn = document.getElementById('themeBtn');
+const themes = ['light', 'dark', 'magenta'];
+let currentTheme = localStorage.getItem('theme') || 'light';
+
+document.body.classList.add(currentTheme);
+themeBtn.classList.add(currentTheme);
+
+themeBtn.addEventListener('click', function() {
+    let nextThemeIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
+    currentTheme = themes[nextThemeIndex];
+    document.body.className = currentTheme;
+    themeBtn.className = currentTheme;
+    localStorage.setItem('theme', currentTheme);
+});
+
+// Switch to details page
+const tiles = document.querySelectorAll('.tile');
+tiles.forEach(tile => {
+    tile.addEventListener('click', function() {
+        document.getElementById('frontPage').classList.add('hidden');
+        document.getElementById('detailsPage').classList.remove('hidden');
+        document.getElementById('backBtnDetails').style.display = 'block';
+        document.getElementById('detailsHeading').textContent = tile.textContent;
+        document.getElementById('detailsText').textContent = `Here is a detailed description about ${tile.textContent}.`;
+        
+    });
+});
+
+// BACK button for details page
+document.getElementById('backBtnDetails').addEventListener('click', function() {
+    document.getElementById('detailsPage').classList.add('hidden');
+    document.getElementById('frontPage').classList.remove('hidden');
+    document.getElementById('backBtnDetails').style.display = 'none';
+});
+
+// Tile 3D effect and press effect
+tiles.forEach(tile => {
+    tile.addEventListener('click', function() {
+        tile.style.transform = 'scale(0.9)';
+        setTimeout(() => tile.style.transform = 'scale(1)', 100);
+    });
+    tile.addEventListener('touchstart', function() {
+        tile.style.transform = 'scale(1.1)';
+    });
+    tile.addEventListener('touchend', function() {
+        tile.style.transform = 'scale(1)';
+    });
+});
+
+// Image slider
+let currentImage = 0;
+const images = document.querySelectorAll('#imageSlider img');
+
+function changeImage() {
+    images[currentImage].style.display = 'none';
+    currentImage = (currentImage + 1) % images.length;
+    images[currentImage].style.display = 'block';
+}
+
+setInterval(changeImage, 3000);
+
+// User Input bar for exams
+const examList = document.getElementById('examList');
+const userInput = document.getElementById('userInput');
+
+userInput.addEventListener('input', function(event) {
+    const exams = event.target.value.split(',').map(exam => exam.trim()).filter(exam => exam);
+    localStorage.setItem('exams', JSON.stringify(exams));
+    displayExams();
+});
+
+// Display stored exams
+function displayExams() {
+    const exams = JSON.parse(localStorage.getItem('exams') || '[]');
+    examList.innerHTML = '';
+    const ul = document.createElement('ul');
+    exams.forEach(exam => {
+        const li = document.createElement('li');
+        li.textContent = exam;
+        ul.appendChild(li);
+    });
+    examList.appendChild(ul);
+}
+
+displayExams();
+
+// Reset button
+document.getElementById('resetBtn').addEventListener('click', function() {
+    userInput.value = '';
+    localStorage.removeItem('exams');
+    displayExams();
+});
+
+// Feedback submit inside the Feedback Bar
+document.getElementById('submitFeedback').addEventListener('click', function() {
+    document.getElementById('feedbackMessage').textContent = 'Successfully submitted';
+    document.getElementById('feedbackInput').style.display = 'none';
+    setTimeout(() => document.getElementById('feedbackMessage').textContent = '', 2000);
+});
+
+// Popout for Credits
+document.getElementById('coPoweredBtn').addEventListener('click', () => alert('Co-powered by Embibe, Telegram, Youtube'));
+document.getElementById('coPartnersBtn').addEventListener('click', () => alert('Co-partners: Embibe, Mathongo, PhysicsWallah, Unacademy'));
+document.getElementById('creditsBtn').addEventListener('click', () => alert('Credits to Sridhar, Akshat, Parv, Shivansh'));
+
+// Contact Us
+const names = ['name1', 'name2', 'name3', 'name4'];
+names.forEach(name => {
+    document.getElementById(name).addEventListener('change', function() {
+        const contactInfo = {
+            name1: '+91 8459426375',
+            name2: '+91 77038 46739',
+            name3: '+91 93684 97062',
+            name4: '+91 91190 66533'
+        };
+        document.getElementById('contactInfo').textContent = this.checked ? contactInfo[name] : '';
+    });
+});
+// Toggle background image in description bar
+document.getElementById('toggleBgImageBtn').addEventListener('click', function() {
+    const descriptionBar = document.getElementById('descriptionBar');
+    descriptionBar.classList.toggle('with-bg');  // Toggle background image
+});
+
+// You can also specify a different background image by changing the URL dynamically if required
+// Example to change the background image dynamically:
+// descriptionBar.style.backgroundImage = "url('path_to_image.jpg')";
+window.onload = function() {
+  const description = document.getElementById('description');
+  const text = description.innerText;
+  description.innerHTML = '';
+
+  // Wrap each letter in a span and add it to the paragraph
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = text[i];
+    description.appendChild(span);
+  }
+};
+
+    </script>
+</body>
+</html>
